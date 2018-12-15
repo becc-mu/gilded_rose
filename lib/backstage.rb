@@ -1,0 +1,2 @@
+class Backstage
+end 
