@@ -7,13 +7,15 @@ class Sulfuras
   end
 
   def update
+    update_quality
+    nochange_sell_in
+  end
+
+  def update_quality
     @quality = 80
   end
 
-  def sell_in
+  def nochange_sell_in
     @sell_in = 1
-  end
-  def max_quality
-    @quality == 80
   end
 end

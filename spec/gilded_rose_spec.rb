@@ -1,25 +1,18 @@
 require 'gilded_rose'
-require 'item'
+# require 'item'
 
 describe GildedRose do
 
-  describe "#update_quality" do
-    it "does not change the name" do
-      item = Item.new("foo", 0, 0)
-      GildedRose.new([item]).update_quality
-      expect(item.name).to eq "foo"
-    end
+  let(:items) { double :item }
 
-    it "lowers the sell_in by one after a day" do
-      item = Item.new("item", 1, 0)
-      GildedRose.new([item]).update_quality
-      expect(item.sell_in).to eq 0
-    end
-
-    it "never lowers quality below 0" do
-      item = Item.new("item", 0, 0)
-      GildedRose.new([item]).update_quality
-      expect(item.quality).to eq(0)
-    end
+  it "should respond to #update_quality" do
+    subject = GildedRose.new([items])
+    expect(subject).to respond_to(:update_quality)
   end
-end #end
+  it "passes when #update_quality is called and item receives #update" do
+    item = spy('item')
+    subject = GildedRose.new([item])
+    subject.update_quality
+    expect(item).to have_received(:update)
+  end
+end
