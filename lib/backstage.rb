@@ -6,6 +6,10 @@ class Backstage
     @sell_in = sell_in
   end
 
+  def to_s
+    "#{@name}, #{@sell_in}, #{@quality}"
+  end
+
   def update
     update_quality
     decrease_sell_in
