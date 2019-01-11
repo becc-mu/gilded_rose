@@ -16,10 +16,6 @@ class AgedBrie
       @quality += 2 if sell_in.zero?
       @quality += 1 unless sell_in.zero?
     end
-    reduce_sell_in
-  end
-
-  def reduce_sell_in
     @sell_in -= 1
   end
 
