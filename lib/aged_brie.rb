@@ -1,30 +1,18 @@
-class AgedBrie
-  attr_reader :name, :sell_in, :quality
-  def initialize(name, sell_in, quality)
-    @name = name
-    @quality = quality
-    @sell_in = sell_in
+require 'generic'
+class AgedBrie < Generic
+
+  def update_quality
+    calculate_quality
+    guard_quality
   end
 
-  def to_s
-    "#{@name}, #{@sell_in}, #{@quality}"
-  end
+  private
 
-  def update
+  def calculate_quality
+    @quality += 1 if @sell_in == 1
     @quality += 1 if @quality == 49
-    unless max_quality?
-      @quality += 2 if sell_in.zero?
-      @quality += 1 unless sell_in.zero?
-    end
-    reduce_sell_in
-  end
+    @quality += 2 if sell_date_passed?
 
-  def reduce_sell_in
-    @sell_in -= 1
+    update_sell_in
   end
-
-  def max_quality?
-    @quality == 50
-  end
-
 end

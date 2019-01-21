@@ -3,7 +3,18 @@ class GildedRose
     @items = items
   end
 
-  def update_quality
-    @items.each { |item| item.update }
+  def update_all
+    @items.each do |item|
+      update(item)
+    end
   end
+
+  def update(item)
+    item.update_quality
+    item.update_sell_in
+  end
+
+  # def update_quality
+  #   @items.each(&:update)
+  # end
 end
