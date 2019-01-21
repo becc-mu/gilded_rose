@@ -33,7 +33,6 @@ describe Generic do
         items = Generic.new("foo", 0, 1)
         items.update_sell_in
         items.update_quality
-        #update(item)
         expect(items.quality).to eq(0)
       end
     end

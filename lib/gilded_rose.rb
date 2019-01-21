@@ -14,7 +14,4 @@ class GildedRose
     item.update_sell_in
   end
 
-  # def update_quality
-  #   @items.each(&:update)
-  # end
 end
