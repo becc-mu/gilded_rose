@@ -9,7 +9,7 @@ describe Backstage do
 
       it 'never increases quality beyond 50' do
         item = Backstage.new("Backstage passes to a TAFKAL80ETC concert", 15, 50)
-        expect(item.update_quality).to eq(50)
+        expect { item.update_quality }.to change { item.quality }.by(0)
       end
     end
 
@@ -40,7 +40,7 @@ describe Backstage do
     context 'after sell_in' do
       it 'sets quality to 0' do
         item = Backstage.new("Backstage passes to a TAFKAL80ETC concert", 0, 50)
-        expect { item.update_sell_in }.to change { item.quality }.to(0)
+        expect { item.update_quality }.to change { item.quality }.from(50).to(0)
       end
 
       it 'does not change quality' do

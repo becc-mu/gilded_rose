@@ -1,18 +1,18 @@
-require 'generic'
-class AgedBrie < Generic
+require 'item'
+require 'generic_methods'
 
-  def update_quality
-    calculate_quality
-    guard_quality
+class AgedBrie < Item
+
+  include GenericMethods
+
+  def update
+    update_quality
+    update_sell_in
   end
 
-  private
-
-  def calculate_quality
-    @quality += 1 if @sell_in == 1
-    @quality += 1 if @quality == 49
-    @quality += 2 if sell_date_passed?
-
-    update_sell_in
+  def update_quality
+    @quality += 1 if in_date?
+    @quality += 2 if out_of_date?
+    check_item
   end
 end

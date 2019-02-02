@@ -1,15 +1,18 @@
-require 'generic'
+require 'item'
+require 'generic_methods'
 
-class Conjured < Generic
+class Conjured < Item
 
-  def update_quality
-    @quality -= 2 if @quality > 0
+  include GenericMethods
+
+  def update
+    update_quality
     update_sell_in
-
   end
 
-  def quality_after_sell_in
-    update_sell_in
-    update_quality
+  def update_quality
+    check_item
+    @quality -= 2 if in_date?
+    @quality -= 4 if out_of_date?
   end
 end
